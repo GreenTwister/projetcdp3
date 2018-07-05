@@ -1,4 +1,5 @@
 <?php
+// Ceci est mon index
 require('controller/frontend.php');
 //try {
 	if (isset($_GET['action'])) {
