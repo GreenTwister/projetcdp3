@@ -4,11 +4,11 @@
 				<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
   				<script>tinymce.init({ selector:'textarea' });</script>
 				<label>Titre de l'article :</label><br /><br />
-				<input type='texte' name ='newtitrearticle' ><br /><br />
+				<input type='texte' name ='newtitrearticle' value="<?= $_POST['title']?>"' ><br /><br />
 			</div>
 			<div class="form-group">
 				<label>Votre article:</label><br /><br />
-				<textarea name="newarticle"></textarea><br /><br />
+				<textarea name="newarticle"><?php echo $_POST['content']; ?></textarea><br /><br />
 			</div>
 			<div class="form-group">
 				<input class="btn btn-success "type="submit" />

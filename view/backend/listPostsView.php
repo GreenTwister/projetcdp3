@@ -24,6 +24,8 @@ while ($data = $posts->fetch())
 
         <form action="view/backend/editarticle.php" method="post" style= "display: inline;">
                     <input type="hidden" name="id" value="<?= $data['id']?>">
+                    <input type="hidden" name="title" value="<?= $data['title']?>">
+                    <input type="hidden" name="content" value="<?= $data['content']?>">
                     <button type="submit" class="btn btn-primary">Editer</button>
                 </form>
         <form action="admin.php?action=delete" method="post" style= "display: inline;">
