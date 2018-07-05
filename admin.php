@@ -1,4 +1,5 @@
 <?php
+// Voilà un nouveau commentaire
 require('controller/PostController.php');
 session_start();
 if(logged()){
