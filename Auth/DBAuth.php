@@ -6,7 +6,7 @@ class DBAuth {
 
 	public function dbConnect()
     {
-        $db = new \PDO('mysql:host=db745083302.db.1and1.com;dbname=db745083302;charset=utf8', 'dbo745083302', 'Patrockthebest2084!');
+        $db = new \PDO('mysql:host=localhost;dbname=superbase;charset=utf8', 'ident', 'mot de passe');
         return $db;
     }
 
