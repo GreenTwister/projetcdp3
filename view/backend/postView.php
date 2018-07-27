@@ -1,4 +1,4 @@
-<?php $title = htmlspecialchars($post['title']); ?>
+<?php $title = $post['title']; ?>
 
 <?php ob_start(); ?>
         <h1>Administrer les articles !</h1>
