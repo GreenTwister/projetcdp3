@@ -14,7 +14,7 @@ class CommentManager extends Manager
     public function getComments($postId)
     {
         $db = $this->dbConnect();
-        $comments = $db->prepare('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE post_id = ? ORDER BY comment_date DESC');
+        $comments = $db->prepare('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE post_id = ? AND signalement = 2 ORDER BY comment_date DESC');
         $comments->execute(array($postId));
 
         return $comments;
@@ -29,15 +29,6 @@ class CommentManager extends Manager
         return $affectedLines;
     }
 	
-	public function updateComment($commentId, $comment)
-	{
-		$db = $this->dbConnect();
-        $comments = $db->prepare('UPDATE comments SET comment = ?, comment_date = NOW() WHERE id = ?');
-        $affectedLines = $comments->execute(array($comment, $commentId));
-
-        return $affectedLines;
-	}
-
     public function signaled($id)
     {
         $db = $this->dbConnect();
@@ -51,6 +42,14 @@ class CommentManager extends Manager
         $db = $this->dbConnect();
         $req = $db->query('SELECT id, author, comment, comment_date FROM comments WHERE signalement = 1');
         return $req;
+    }
+
+    public function recupSi($id)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('UPDATE comments SET signalement = 2 WHERE id = ?');
+        $affectedLines = $req->execute(array($id));
+        return $affectedLines;
     }
 
     public function deleteSi($id){
