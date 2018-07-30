@@ -1,7 +1,7 @@
-<?php $title = 'Mon blog'; ?>
+<?php $title = 'Blog Écrivain'; ?>
 
 <?php ob_start(); ?>
-<h1>Mon super blog !</h1>
+<h1>Mon Blog Écrivain!</h1>
 <p>Derniers billets du blog :</p>
 
 
@@ -9,17 +9,22 @@
 while ($data = $posts->fetch())
 {
 ?>
-    <div class="news">
-        <h3>
-            <?= $data['title'] ?>
-            <em>le <?= $data['creation_date_fr'] ?></em>
-        </h3>
-        
-        <p>
-            <?= $data['content'] ?>
-            <br />
-            <em><a href="index.php?action=post&amp;id=<?= $data['id'] ?>">Commentaires</a></em>
-        </p>
+    <div class="col-xs-5"> 
+            <div class="card">  
+                <div class="card-block">
+                    <h3 class="card-title">
+                        <?= $data['title'] ?>
+                        <em>le <?= $data['creation_date_fr'] ?></em>
+                    </h3>
+                
+                    <p class="card-text">
+                        <?= $data['content'] ?>
+                    <br />
+                    <em><a href="index.php?action=post&amp;id=<?= $data['id'] ?>">Commentaires</a></em>
+                    </p>
+                </br>
+                </div>
+            </div>
     </div>
 <?php
 }

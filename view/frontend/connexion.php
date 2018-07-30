@@ -1,7 +1,7 @@
 <?php
-require 'templateConnexion.php';
+require 'template.php';
 ?>
-<form action="index.php?action=connexion" method="post" style="padding-left:200px ;  width: 30%;" >
+<form action="index.php?action=connexion" method="post" style="padding-left:100px ;  width: 50%;" >
 	 <p>Votre pseudo</p>
 	<p><input name ="login" type="texte" class="form-control"></input></p>
 	<p>Votre mot de passe</p>

@@ -30,6 +30,7 @@
 				<input type="submit" />
 			</div>
 		</form>
+    </br>
 
         <?php
         while ($comment = $comments->fetch())
