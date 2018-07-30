@@ -14,15 +14,19 @@ while ($data = $signaled->fetch())
         </h3>
         
         <p>
-            <?= nl2br(htmlspecialchars($data['comment'])) ?>
+            <?= $data['comment'] ?>
         </p>
         <p>
         	<form action="admin.php?action=deleteSignaled" method="post" style= "display: inline;">
                     <input type="hidden" name="id" value="<?= $data['id']?>">
                     <button type="submit" class="btn btn-danger">Supprimer</button>
                 </form>
+      
+            <form action="admin.php?action=recupSignaled" method="post" style= "display: inline;">
+                    <input type="hidden" name="id" value="<?= $data['id']?>">
+                    <button type="submit" class="btn btn-success">Restaurer</button>
+                </form>
         </p>
-
     </div>
 
 <?php 
