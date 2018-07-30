@@ -25,7 +25,7 @@ class PostManager extends Manager{
     public function postArticle($titrearticle, $article)
     {
         $db = $this->dbConnect();
-        $articles = $db->prepare('INSERT INTO posts (title, content) VALUES (?, ?)');
+        $articles = $db->prepare('INSERT INTO posts (title, content, creation_date) VALUES (?, ?, NOW())');
         $affectedLines = $articles->execute(array($titrearticle, $article));
         return $affectedLines;
     }
