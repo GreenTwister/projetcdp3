@@ -4,11 +4,14 @@ require('controller/frontend.php');
 //try {
 	if (isset($_GET['action'])) {
 		if ($_GET['action'] == 'listPosts') {
-			listPosts();
+			$frontend = new frontend();
+			$listing = $frontend->listPosts();
 		}
 		elseif ($_GET['action'] == 'post') {
 			if (isset($_GET['id']) && $_GET['id'] > 0) {
-				post();
+				$frontend = new frontend();
+				$listing = $frontend->post();
+				
 			}
 			else {
 				echo 'Erreur : aucun identifiant de billet envoyé';
@@ -16,7 +19,9 @@ require('controller/frontend.php');
 		}
 		elseif ($_GET['action'] == 'comment') {
 			if (isset($_GET['id']) && $_GET['id'] > 0) {
-				comment();
+				$frontend = new frontend();
+				$listing = $frontend->comment();
+				
 			}
 			else {
 				echo 'Erreur : aucun identifiant de commentaire envoyé';
@@ -26,7 +31,9 @@ require('controller/frontend.php');
 		elseif ($_GET['action'] == 'addComment') {
 			if (isset($_GET['id']) && $_GET['id'] > 0) {
 				if (!empty($_POST['author']) && !empty($_POST['comment'])) {
-					addComment($_GET['id'], $_POST['author'], $_POST['comment']);
+					$frontend = new frontend();
+					$listing = $frontend->addComment($_GET['id'], $_POST['author'], $_POST['comment']);
+					
 				}
 				else {
 					throw new Exception('Tous les champs ne sont pas remplis !');
@@ -43,15 +50,22 @@ require('controller/frontend.php');
 			
 		}
 		elseif ($_GET['action'] == 'signaled') {
-			commentSignaled($_POST['id']);		
+				$frontend = new frontend();
+				$listing = $frontend->commentSignaled($_POST['id']);
+					
 		}
 		elseif ($_GET['action'] == 'connexion') {
-			Connexion($_POST['login'],$_POST['password']);
+			$frontend = new frontend();
+			$listing = $frontend->Connexion($_POST['login'],$_POST['password']);
+			
 
 		}	
 	}
 	else {
-		listPosts();
+		$frontend = new frontend();
+		$listing = $frontend->listPosts();
+		
+
 	}
 /*}
 catch(Exception $e) { // S'il y a eu une erreur, alors...
