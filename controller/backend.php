@@ -26,36 +26,11 @@ class backend extends frontend{
         require('view/backend/postView.php');
     }
 
-    public function comment()
-    {
-       
-        $commentManager = new sabate\Model\CommentManager();
-
-        $comment = $commentManager->getComment($_GET['id']);
-
-        require('view/backend/commentView.php');
-    }
-
-    public function addComment($postId, $author, $comment)
-    {
-        $commentManager = new sabate\Model\CommentManager();
-
-        $affectedLines = $commentManager->postComment($postId, $author, $comment);
-
-        if ($affectedLines === false) {
-            throw new Exception('Impossible d\'ajouter le commentaire !');
-        }
-        else {
-            header('Location: admin.php?action=post&id=' . $postId);
-        }
-    }
-
-
     public function addArticle($titrearticle, $article)
     {
         $postManager = new sabate\Model\PostManager();
         $affectedLines = $postManager->postArticle($titrearticle, $article);
-        if ($affectedLines === true ) {
+        if ($affectedLines ) {
             
             header('Location: admin.php'); 
         }
@@ -68,7 +43,7 @@ class backend extends frontend{
     {
         $postManager = new sabate\Model\PostManager();
         $affectedLines = $postManager->delete($id);
-        if ($affectedLines === true ) {
+        if ($affectedLines) {
             
             header('Location: admin.php'); 
         }
@@ -81,7 +56,7 @@ class backend extends frontend{
     {
         $postManager = new sabate\Model\PostManager();
         $affectedLines = $postManager->update($id, $titrearticle, $article);
-        if ($affectedLines === true ) {
+        if ($affectedLines) {
             
             header('Location: admin.php'); 
         }
@@ -101,7 +76,7 @@ class backend extends frontend{
     {
         $CommentManager = new sabate\Model\CommentManager(); // Création d'un objet
         $affectedLines = $CommentManager->recupSi($id); // Appel d'une fonction de cet objet
-        if ($affectedLines === true ) {
+        if ($affectedLines) {
             
             header('Location: admin.php?action=listSignaled'); 
         }
@@ -115,7 +90,7 @@ class backend extends frontend{
     {
         $commentManager = new sabate\Model\CommentManager();
         $affectedLines = $commentManager->deleteSi($id);
-        if ($affectedLines === true ) {
+        if ($affectedLines) {
             
             header('Location: admin.php'); 
         }

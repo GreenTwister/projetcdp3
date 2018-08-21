@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <style type="text/css">
+    .labarre{ padding-top: 70px; }
+  </style>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,7 +26,7 @@
   </nav>
 
   <div class="container">
-    <div class="starter-template" style="padding-top : 100px">
+    <div class="labarre">
       <?php echo  $content; ?>
     </div>
   </div>

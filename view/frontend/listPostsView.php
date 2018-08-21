@@ -9,7 +9,7 @@
 while ($data = $posts->fetch())
 {
 ?>
-    <div class="col-xs-5"> 
+    <div class="col-lg-5"> 
             <div class="card">  
                 <div class="card-block">
                     <h3 class="card-title">
@@ -29,7 +29,5 @@ while ($data = $posts->fetch())
 <?php
 }
 $posts->closeCursor();
-?>
-<?php $content = ob_get_clean(); ?>
-
-<?php require('template.php'); ?>
+$content = ob_get_clean();
+require('template.php'); ?>

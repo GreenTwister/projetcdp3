@@ -6,7 +6,7 @@ class DBAuth {
 
 	public function dbConnect()
     {
-        $db = new \PDO('mysql:host=localhost;dbname=superbase;charset=utf8', 'ident', 'mot de passe');
+        $db = new \PDO('mysql:host=db745083302.db.1and1.com;dbname=db745083302;charset=utf8', 'dbo745083302', 'mot de passe');
         return $db;
     }
 
@@ -19,10 +19,15 @@ class DBAuth {
 		{
 			if($username !== $donnees['username'] || sha1($password) !== $donnees['password'])
             {
-        		$errorMessage = 'Mauvais identifiants !';
-        		echo $errorMessage;
-        		return false;
-                require ('../view/backend/templateAdmin');
+                ?>
+                <div class="labarre">
+                    <div class="alert alert-danger">
+                    <strong>Mauvais identifiants !</strong>
+                    </div>
+                </div>
+                <?php
+                header("Location : index.php");
+                require('view/frontend/connexion.php');
       		}
         	elseif($username == $donnees['username'] && sha1($password) == $donnees['password'])
       		{

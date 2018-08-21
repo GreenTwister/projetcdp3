@@ -20,30 +20,7 @@ if($log->logged()){
 					echo 'Erreur : aucun identifiant de billet envoyé';
 			}
 		}
-		elseif ($_GET['action'] == 'comment') {
-			if (isset($_GET['id']) && $_GET['id'] > 0) {
-					$backend = new backend();
-					$listing = $backend->comment();
-			}
-			else {
-					echo 'Erreur : aucun identifiant de commentaire envoyé';
-			}
-		}
-			
-		elseif ($_GET['action'] == 'addComment') {
-			if (isset($_GET['id']) && $_GET['id'] > 0) {
-					if (!empty($_POST['author']) && !empty($_POST['comment'])) {
-						$backend = new backend();
-						$listing = $backend->addComment($_GET['id'], $_POST['author'], $_POST['comment']);
-					}
-					else {
-						throw new Exception('Tous les champs ne sont pas remplis !');
-					}
-				}
-				else {
-					throw new Exception('Aucun identifiant de billet envoyé');
-				}
-			}
+	
 		elseif ($_GET['action'] == 'addArticle') {
 			if (!empty($_POST['titrearticle']) && !empty($_POST['article'])) {
 						$backend = new backend();
@@ -55,28 +32,45 @@ if($log->logged()){
 			
 					
 		}elseif ($_GET['action'] == 'delete') {
-			$backend = new backend();
-			$listing = $backend->deleteArticle($_POST['id']);
+			if(isset($_POST['id'])){
+
+				$backend = new backend();
+				$listing = $backend->deleteArticle($_POST['id']);
+			}
+			else{
+				throw new Exception('Impossible de supprimer');
+			}
 					
 		}
 		elseif ($_GET['action'] == 'updateArticle') {
-			$backend = new backend();
-			$listing = $backend->updateArticle($_POST['id'],$_POST['newtitrearticle'], $_POST['newarticle']);
+			if(isset($_POST['id'],$_POST['newtitrearticle'], $_POST['newarticle'])){
+
+				$backend = new backend();
+				$listing = $backend->updateArticle($_POST['id'],$_POST['newtitrearticle'], $_POST['newarticle']);
+			}
+			else{
+				throw new Exception('Impossible de modifier');
+			}
+			
 					
-		}
-		elseif ($_GET['action'] == 'signaled') {
-			$backend = new backend();
-			$listing = $backend->commentSignaled($_POST['id']);
-					
-		}
+		}	
+		
 		elseif ($_GET['action'] == 'listSignaled') {
 			$backend = new backend();
 			$listing = $backend->listSignaled();
 					
 		}
 		elseif ($_GET['action'] == 'recupSignaled') {
-			$backend = new backend();
-			$listing = $backend->recupSignaled($_POST['id']);
+
+			if(isset($_POST['id'])){
+
+				$backend = new backend();
+				$listing = $backend->recupSignaled($_POST['id']);
+			}
+			else{
+				throw new Exception('Impossible d\'afficher les commentaires signalés');
+			}
+			
 					
 		}
 		elseif ($_GET['action'] == 'deleteSignaled') {

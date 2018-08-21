@@ -1,7 +1,7 @@
 <?php ob_start(); ?>
 <form action="../../admin?action=addArticle" method="post">
 			<div class="form-group">
-				 <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+				<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
   				<script>tinymce.init({ selector:'textarea' });</script>
 				<label>Titre de l'article :</label><br /><br />
 				<input type='texte' name ='titrearticle'><br /><br />

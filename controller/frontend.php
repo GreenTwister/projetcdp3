@@ -24,14 +24,6 @@ class frontend
         require('view/frontend/postView.php');
     }
 
-    public function comment()
-    {
-        $commentManager = new sabate\Model\CommentManager();
-
-        $comment = $commentManager->getComment($_GET['id']);
-
-        require('view/frontend/commentView.php');
-    }
 
     public function addComment($postId, $author, $comment)
     {
@@ -39,7 +31,7 @@ class frontend
 
         $affectedLines = $commentManager->postComment($postId, $author, $comment);
 
-        if ($affectedLines === false) {
+        if (!$affectedLines) {
             throw new Exception('Impossible d\'ajouter le commentaire !');
         }
         else {
@@ -51,7 +43,7 @@ class frontend
     {
         $commentManager = new sabate\Model\CommentManager();
         $affectedLines = $commentManager->signaled($id);
-        if ($affectedLines === true ) {
+        if ($affectedLines) {
             
             header('Location: index.php'); 
         }

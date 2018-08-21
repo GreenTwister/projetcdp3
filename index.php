@@ -17,17 +17,6 @@ require('controller/frontend.php');
 				echo 'Erreur : aucun identifiant de billet envoyé';
 			}
 		}
-		elseif ($_GET['action'] == 'comment') {
-			if (isset($_GET['id']) && $_GET['id'] > 0) {
-				$frontend = new frontend();
-				$listing = $frontend->comment();
-				
-			}
-			else {
-				echo 'Erreur : aucun identifiant de commentaire envoyé';
-			}
-		}
-		
 		elseif ($_GET['action'] == 'addComment') {
 			if (isset($_GET['id']) && $_GET['id'] > 0) {
 				if (!empty($_POST['author']) && !empty($_POST['comment'])) {
@@ -55,9 +44,22 @@ require('controller/frontend.php');
 					
 		}
 		elseif ($_GET['action'] == 'connexion') {
-			$frontend = new frontend();
-			$listing = $frontend->Connexion($_POST['login'],$_POST['password']);
-			
+
+			if (!empty($_POST['login']) && !empty($_POST['password'])){
+				$frontend = new frontend();
+				$listing = $frontend->Connexion($_POST['login'],$_POST['password']);
+			}else{
+
+				?>
+				<div class="labarre">
+                    <div class="alert alert-danger">
+                    <strong>Erreur champs vides !</strong>
+                    </div>
+                </div>
+                <?php
+                header("Location : index.php");
+                require('view/frontend/connexion.php');
+			}
 
 		}	
 	}

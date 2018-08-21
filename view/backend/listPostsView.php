@@ -4,17 +4,14 @@
 <h1>Administrer les articles</h1>
 <a href="view/backend/addarticle.php" class="btn btn-success">Ajouter un article</a>
 <p>Derniers billets du blog :</p>
-
-
-
 <?php
 while ($data = $posts->fetch())
 {
 ?>
     <div>
-        <div class="col-xs-5">
+        <div class="col-lg-5">
             <div class="card">
-                <div class="card-block">
+                <div class="card-block ">
                     <h3 class="card-title">
                         <?= $data['title'] ?>
                         <em>le <?= $data['creation_date_fr'] ?></em>

@@ -14,7 +14,7 @@ while ($data = $signaled->fetch())
         </h3>
         
         <p>
-            <?= $data['comment'] ?>
+            <?= htmlspecialchars($data['comment']) ?>
         </p>
         <p>
         	<form action="admin.php?action=deleteSignaled" method="post" style= "display: inline;">
